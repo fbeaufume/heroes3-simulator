@@ -20,8 +20,8 @@ class CombatSimulation(val stack1: CreatureStack, val stack2: CreatureStack) {
             round++
         }
 
-        // TODO FBE display the winner
-        println("Combat simulation is over: ${stack1.creature.name} (x${stack1.quantity}, ${stack1.creature.currentHealth} health) and ${stack2.creature.name} (x${stack2.quantity}, ${stack2.creature.currentHealth} health)")
+        val winner: CreatureStack = if (stack1.isAlive()) stack1 else stack2
+        println("Combat simulation is over: winner is ${winner.creature.name} (${winner.quantity} left with ${winner.creature.currentHealth} health)")
     }
 
     /**
