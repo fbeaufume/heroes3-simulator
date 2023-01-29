@@ -2,20 +2,22 @@ package com.adeliosys.heroes3simulator
 
 class CombatSimulation(val stack1: CreatureStack, val stack2: CreatureStack) {
 
+    private var round = 1;
+
     /**
      * Run the simulation.
      */
     fun run() {
         println("Starting combat simulation of ${stack1.quantity} ${stack1.creature.name} versus ${stack2.quantity} ${stack2.creature.name}")
 
-        // TODO FBE display a round count
-
         while (true) {
             if (isOver()) break;
-            stack1.attack(stack2)
+            stack1.attack(stack2, round)
 
             if (isOver()) break;
-            stack2.attack(stack1)
+            stack2.attack(stack1, round)
+
+            round++
         }
 
         // TODO FBE display the winner
