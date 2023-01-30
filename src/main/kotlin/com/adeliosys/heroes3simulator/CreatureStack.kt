@@ -17,7 +17,7 @@ class CreatureStack(val creature: Creature, val initialQuantity: Int) {
         println("Round $round: ${creature.name} attacks ${other.creature.name} for $damage damage: ${other.quantity} left (${other.creature.currentHealth} health)")
 
         // The other one retaliates, if possible
-        if (other.isAlive()) {
+        if (other.isAlive() && !creature.hasAbility(Ability.NO_ENEMY_RETALIATION)) {
             damage = other.computeDamage(this.creature)
             applyDamage(damage)
 
