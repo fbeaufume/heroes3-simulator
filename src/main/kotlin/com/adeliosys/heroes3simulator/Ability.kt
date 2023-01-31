@@ -5,5 +5,10 @@ enum class Ability {
     /**
      * Prevent enemy retaliation.
      */
-    NO_ENEMY_RETALIATION
+    NO_ENEMY_RETALIATION,
+
+    /**
+     * Attack twice.
+     */
+    DOUBLE_ATTACK
 }

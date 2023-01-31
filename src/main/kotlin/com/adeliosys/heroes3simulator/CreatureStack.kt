@@ -9,6 +9,9 @@ class CreatureStack(val creature: Creature, val initialQuantity: Int) {
 
     var quantity = initialQuantity
 
+    /**
+     * This creature attacks another one.
+     */
     fun attack(other: CreatureStack, round: Int) {
         // This creature attacks the other one
         var damage = computeDamage(other.creature)
@@ -22,6 +25,14 @@ class CreatureStack(val creature: Creature, val initialQuantity: Int) {
             applyDamage(damage)
 
             println("Round $round: ${other.creature.name} retaliates ${creature.name} for $damage damage: ${quantity} left (${creature.currentHealth} health)")
+        }
+
+        // Second attack, if possible
+        if (other.isAlive() && creature.hasAbility(Ability.DOUBLE_ATTACK)) {
+            damage = computeDamage(other.creature)
+            other.applyDamage(damage)
+
+            println("Round $round: ${creature.name} attacks ${other.creature.name} for $damage damage: ${other.quantity} left (${other.creature.currentHealth} health)")
         }
     }
 
