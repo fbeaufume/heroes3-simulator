@@ -16,6 +16,13 @@ class Creature(
     private val abilities: MutableList<Ability> = mutableListOf()
 
     /**
+     * Reset the current health to the initial health.
+     */
+    fun resetCurrentHealth() {
+        currentHealth = initialHealth
+    }
+
+    /**
      * Add abilities to this creature.
      */
     fun addAbilities(vararg abilities: Ability): Creature {

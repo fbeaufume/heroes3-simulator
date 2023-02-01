@@ -5,9 +5,25 @@ import kotlin.math.min
 /**
  * One stack of creatures.
  */
-class CreatureStack(val creature: Creature, val initialQuantity: Int) {
+class CreatureStack(val creature: Creature, var initialQuantity: Int) {
 
     var quantity = initialQuantity
+
+    /**
+     * Reset the quantity to the initial quantity.
+     */
+    fun resetQuantity() {
+        quantity = initialQuantity
+        creature.resetCurrentHealth()
+    }
+
+    /**
+     * Define the initial quantity and reset the quantity.
+     */
+    fun defineInitialQuantity(initialQuantity: Int) {
+        this.initialQuantity = initialQuantity
+        resetQuantity()
+    }
 
     /**
      * This creature attacks another one.
