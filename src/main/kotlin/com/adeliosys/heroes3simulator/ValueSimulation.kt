@@ -1,6 +1,7 @@
 package com.adeliosys.heroes3simulator
 
 import kotlin.math.max
+import kotlin.system.measureTimeMillis
 
 /**
  * Compute the number of creatures needed to defeat a certain stack of creatures.
@@ -27,28 +28,30 @@ class ValueSimulation(val stack1: CreatureStack, val stack2: CreatureStack) {
      * Run the simulation.
      */
     fun run() {
-        println("Starting value simulation of ${stack1.quantity} ${stack1.creature.name} versus ${stack2.creature.name}")
+        val duration = measureTimeMillis {
+            println("Starting value simulation of ${stack1.quantity} ${stack1.creature.name} versus ${stack2.creature.name}")
 
-        if (stack1 === stack2) {
-            println("Different creature stacks must be used")
-            return
+            if (stack1 === stack2) {
+                println("Different creature stacks must be used")
+                return
+            }
+
+            while (true) {
+                // Check if the simulation is over
+                if (isOver()) break;
+
+                // Run the next combat simulation
+                combat++
+                stack1.resetQuantity()
+                stack2.defineInitialQuantity(computeQuantity())
+                val result = CombatSimulation(stack1, stack2).run()
+
+                // Update the low and high quantities using the combat simulation result
+                updateLowAndHighQuantities(stack2.initialQuantity, result)
+            }
         }
 
-        while (true) {
-            // Check if the simulation is over
-            if (isOver()) break;
-
-            // Run the next combat simulation
-            combat++
-            stack1.resetQuantity()
-            stack2.defineInitialQuantity(computeQuantity())
-            val result = CombatSimulation(stack1, stack2).run()
-
-            // Update the low and high quantities using the combat simulation result
-            updateLowAndHighQuantities(stack2.initialQuantity, result)
-        }
-
-        println("Value simulation is over: result is ${highQuantity}")
+        println("Value simulation executed in $duration msec: result is ${highQuantity}")
     }
 
     /**
@@ -73,7 +76,7 @@ class ValueSimulation(val stack1: CreatureStack, val stack2: CreatureStack) {
      */
     private fun computeQuantity(): Int {
         if (lowQuantity == null && highQuantity == null) {
-            return max(stack1.creature.initialHealth / stack2.creature.initialHealth, 1)
+            return max(stack1.creature.initialHealth * stack1.initialQuantity / stack2.creature.initialHealth, 1)
         }
 
         if (lowQuantity == null) {

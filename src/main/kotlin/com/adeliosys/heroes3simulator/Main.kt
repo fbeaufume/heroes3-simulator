@@ -4,25 +4,19 @@ fun main(args: Array<String>) {
     println("Heroes 3 Simulator")
 
     // See https://heroes.thelazy.net/index.php/List_of_creatures for creature stats
-    val peasants = CreatureStack(Creature("Peasant", 1, 1, 1, 1, 1), 3506)
+    val peasants = CreatureStack(Creature("Peasant", 1, 1, 1, 1, 1), 1)
     val skeltonWarriors = CreatureStack(Creature("Skeleton Warrior", 6, 6, 1, 3, 6), 1)
     val halberdiers = CreatureStack(Creature("Halberdier", 6, 5, 2, 3, 10), 1)
     val battleDwarfs = CreatureStack(Creature("Battle Dwarf", 7, 7, 2, 4, 20), 1)
     val silverPegasi = CreatureStack(Creature("Silver Pegasus", 9, 10, 5, 9, 30), 1)
     val crusaders = CreatureStack(Creature("Crusader", 12, 12, 7, 10, 35).addAbilities(Ability.DOUBLE_ATTACK), 1)
-    val crusaders10 = CreatureStack(Creature("Crusader", 12, 12, 7, 10, 35).addAbilities(Ability.DOUBLE_ATTACK), 10)
-    val crusaders100 = CreatureStack(Creature("Crusader", 12, 12, 7, 10, 35).addAbilities(Ability.DOUBLE_ATTACK), 100)
     val minotaurKings = CreatureStack(Creature("Minotaur King", 15, 15, 12, 20, 50), 1)
     val nagaQueens = CreatureStack(Creature("Naga Queen", 16, 13, 30, 30, 110).addAbilities(Ability.NO_ENEMY_RETALIATION), 1)
-    val nagaQueens10 = CreatureStack(Creature("Naga Queen", 16, 13, 30, 30, 110).addAbilities(Ability.NO_ENEMY_RETALIATION), 10)
-    val nagaQueens100 = CreatureStack(Creature("Naga Queen", 16, 13, 30, 30, 110).addAbilities(Ability.NO_ENEMY_RETALIATION), 100)
     val archDevil = CreatureStack(Creature("Arch Devil", 26, 28, 30, 40, 200).addAbilities(Ability.NO_ENEMY_RETALIATION), 1)
     val archangels = CreatureStack(Creature("Anchangel", 30, 30, 50, 50, 250), 1)
-    val archangels10 = CreatureStack(Creature("Anchangel", 30, 30, 50, 50, 250), 10)
-    val archangels100 = CreatureStack(Creature("Anchangel", 30, 30, 50, 50, 250), 100)
     val azureDragon = CreatureStack(Creature("Azure Dragon", 50, 50, 70, 80, 1000), 1)
 
-//    CombatSimulation(archangels10, peasants).run()
+//    CombatSimulation(nagaQueens, crusaders).run()
 
-    ValueSimulation(nagaQueens100, peasants).run()
+    ValueSimulation(azureDragon, peasants).run()
 }
