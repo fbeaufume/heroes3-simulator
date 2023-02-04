@@ -7,7 +7,7 @@ import kotlin.system.measureTimeMillis
  * Compute the number of creatures needed to defeat a certain stack of creatures.
  * The amount is computed by dichotomy using combat simulations with a varying amount of creatures
  */
-class ValueSimulation(val stack1: CreatureStack, val stack2: CreatureStack) {
+class ValueSimulation(val stack1: CreatureStack, val stack2: CreatureStack, val logLevel: Int = 1) {
 
     /**
      * The low quantity used by the dichotomy.
@@ -29,7 +29,7 @@ class ValueSimulation(val stack1: CreatureStack, val stack2: CreatureStack) {
      */
     fun run() {
         val duration = measureTimeMillis {
-            println("Starting value simulation of ${stack1.quantity} ${stack1.creature.name} versus ${stack2.creature.name}")
+            log(logLevel, "Starting value simulation of ${stack1.quantity} ${stack1.creature.name} versus ${stack2.creature.name}")
 
             if (stack1 === stack2) {
                 println("Different creature stacks must be used")
@@ -44,14 +44,14 @@ class ValueSimulation(val stack1: CreatureStack, val stack2: CreatureStack) {
                 combat++
                 stack1.resetQuantity()
                 stack2.defineInitialQuantity(computeQuantity())
-                val result = CombatSimulation(stack1, stack2).run()
+                val result = CombatSimulation(stack1, stack2, logLevel - 1).run()
 
                 // Update the low and high quantities using the combat simulation result
                 updateLowAndHighQuantities(stack2.initialQuantity, result)
             }
         }
 
-        println("Value simulation executed in $duration msec: result is ${highQuantity}")
+        log(logLevel, "Value simulation executed in $duration msec: result is ${highQuantity}")
     }
 
     /**

@@ -16,7 +16,7 @@ fun main(args: Array<String>) {
     val archangels = CreatureStack(Creature("Anchangel", 30, 30, 50, 50, 250), 1)
     val azureDragon = CreatureStack(Creature("Azure Dragon", 50, 50, 70, 80, 1000), 1)
 
-//    CombatSimulation(nagaQueens, crusaders).run()
+//    CombatSimulation(nagaQueens, crusaders, 1).run()
 
-    ValueSimulation(azureDragon, peasants).run()
+    ValueSimulation(azureDragon, peasants, 1).run()
 }

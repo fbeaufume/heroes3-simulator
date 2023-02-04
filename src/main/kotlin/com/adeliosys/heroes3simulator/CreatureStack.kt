@@ -28,19 +28,19 @@ class CreatureStack(val creature: Creature, var initialQuantity: Int) {
     /**
      * This creature attacks another one.
      */
-    fun attack(other: CreatureStack, round: Int) {
+    fun attack(other: CreatureStack, round: Int, logLevel: Int) {
         // This creature attacks the other one
         var damage = computeDamage(other.creature)
         other.applyDamage(damage)
 
-        println("Round $round: ${creature.name} attacks ${other.creature.name} for $damage damage: ${other.quantity} left (${other.creature.currentHealth} health)")
+        log(logLevel, "Round $round: ${creature.name} attacks ${other.creature.name} for $damage damage: ${other.quantity} left (${other.creature.currentHealth} health)")
 
         // The other one retaliates, if possible
         if (other.isAlive() && !creature.hasAbility(Ability.NO_ENEMY_RETALIATION)) {
             damage = other.computeDamage(this.creature)
             applyDamage(damage)
 
-            println("Round $round: ${other.creature.name} retaliates ${creature.name} for $damage damage: ${quantity} left (${creature.currentHealth} health)")
+            log(logLevel, "Round $round: ${other.creature.name} retaliates ${creature.name} for $damage damage: ${quantity} left (${creature.currentHealth} health)")
         }
 
         // Second attack, if possible
@@ -48,7 +48,7 @@ class CreatureStack(val creature: Creature, var initialQuantity: Int) {
             damage = computeDamage(other.creature)
             other.applyDamage(damage)
 
-            println("Round $round: ${creature.name} attacks ${other.creature.name} for $damage damage: ${other.quantity} left (${other.creature.currentHealth} health)")
+            log(logLevel, "Round $round: ${creature.name} attacks ${other.creature.name} for $damage damage: ${other.quantity} left (${other.creature.currentHealth} health)")
         }
     }
 
