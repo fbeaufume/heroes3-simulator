@@ -29,8 +29,6 @@ class ValueSimulation(val stack1: CreatureStack, val stack2: CreatureStack, val 
      */
     fun run() {
         val duration = measureTimeMillis {
-            log(logLevel, "Starting value simulation of ${stack1.quantity} ${stack1.creature.name} versus ${stack2.creature.name}")
-
             if (stack1 === stack2) {
                 println("Different creature stacks must be used")
                 return
@@ -51,7 +49,7 @@ class ValueSimulation(val stack1: CreatureStack, val stack2: CreatureStack, val 
             }
         }
 
-        log(logLevel, "Value simulation executed in $duration msec: result is ${highQuantity}")
+        log(logLevel, "Value simulation of ${stack1.quantity} ${stack1.creature.name} versus ${stack2.creature.name} executed in $duration msec: result is ${highQuantity}")
     }
 
     /**
