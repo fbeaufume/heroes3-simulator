@@ -1,11 +1,19 @@
 package com.adeliosys.heroes3simulator
 
-import kotlin.system.measureTimeMillis
-
 /**
  * Simulate a combat between two stacks of creatures.
  */
-class CombatSimulation(val stack1: CreatureStack, val stack2: CreatureStack, val logLevel: Int = 1) {
+class CombatSimulation(private val creature1: Creature, initialQuantity1: Int, private val creature2: Creature, initialQuantity2: Int, private val logLevel: Int = 1) {
+
+    /**
+     * The stack for creature 1.
+     */
+    private val stack1 = CreatureStack(creature1, initialQuantity1)
+
+    /**
+     * The stack for creature 1.
+     */
+    private val stack2 = CreatureStack(creature2, initialQuantity2)
 
     /**
      * The current combat round number.
@@ -17,8 +25,8 @@ class CombatSimulation(val stack1: CreatureStack, val stack2: CreatureStack, val
      * Return true if the first stack wins, false otherwise.
      */
     fun run(): Boolean {
-        if (stack1 === stack2) {
-            println("Different creature stacks must be used")
+        if (creature1 === creature2) {
+            println("Different creature instances must be used")
             return true
         }
 

@@ -40,7 +40,7 @@ class CreatureStack(val creature: Creature, var initialQuantity: Int) {
             damage = other.computeDamage(this.creature)
             applyDamage(damage)
 
-            log(logLevel, "Round $round: ${other.creature.name} retaliates ${creature.name} for $damage damage: ${quantity} left (${creature.currentHealth} health)")
+            log(logLevel, "Round $round: ${other.creature.name} retaliates ${creature.name} for $damage damage: $quantity left (${creature.currentHealth} health)")
         }
 
         // Second attack, if possible
@@ -60,7 +60,7 @@ class CreatureStack(val creature: Creature, var initialQuantity: Int) {
     /**
      * Damage formula details are available in [Damage formula](https://heroes.thelazy.net/index.php/Damage).
      */
-    fun computeDamage(other: Creature): Int {
+    private fun computeDamage(other: Creature): Int {
         // Use the average creature damage instead of a random damage, to get a deterministic result
         val baseDamage = (creature.maxDamage + creature.minDamage) * 0.5 * quantity;
 
@@ -77,7 +77,7 @@ class CreatureStack(val creature: Creature, var initialQuantity: Int) {
     /**
      * Apply some damage to this creature stack.
      */
-    fun applyDamage(damage: Int) {
+    private fun applyDamage(damage: Int) {
         // A stack health is the total health of all creatures of the stack
         val previousStackHealth = creature.initialHealth * (quantity - 1) + creature.currentHealth
         val newStackHealth = previousStackHealth - damage
