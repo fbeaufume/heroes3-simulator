@@ -17,7 +17,7 @@ The PV for several stack sizes of a selection of creatures is:
 | Creature          | PV for 1 | PV for 10 | PV for 100 |
 |-------------------|----------|-----------|------------|
 | Skeleton Warriors | 6        |           |            |
-| Halberdier        | 9        |           |            |
+| Halberdier        | 9        | 69        | 668        |
 | Battle Dwarf      | 13       |           |            |
 | Silver Pegasus    | 29       |           |            |
 | Crusader          | 43       | 354       | 3427       |
@@ -26,6 +26,18 @@ The PV for several stack sizes of a selection of creatures is:
 | Arch Devil        | 441      |           |            |
 | Archangel         | 453      | 3506      | 34334      |
 | Azure Dragon      | 1331     |           |            |
+
+This means that it takes 453 peasants to defeat one archangel, and 3506 peasants to defeat 10 archangels.
+
+We can generalize by computing the combat value in any creature besides peasants:
+
+| Creature     | Quantity | Value in  | Is  |
+|--------------|----------|-----------|-----|
+| Naga Queen   | 10       | Crusader  | 44  |
+| Azure Dragon | 10       | Archangel | 51  |
+| Azure Dragon | 20       | Archangel | 102 |
+
+This means that it takes 44 crusaders to defeat 10 naga queens.
 
 ## Limitations
 
