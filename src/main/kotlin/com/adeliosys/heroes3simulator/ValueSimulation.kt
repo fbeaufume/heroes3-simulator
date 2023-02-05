@@ -28,28 +28,26 @@ class ValueSimulation(val stack1: CreatureStack, val stack2: CreatureStack, val 
      * Run the simulation.
      */
     fun run() {
-        val duration = measureTimeMillis {
-            if (stack1 === stack2) {
-                println("Different creature stacks must be used")
-                return
-            }
-
-            while (true) {
-                // Check if the simulation is over
-                if (isOver()) break;
-
-                // Run the next combat simulation
-                combat++
-                stack1.resetQuantity()
-                stack2.defineInitialQuantity(computeQuantity())
-                val result = CombatSimulation(stack1, stack2, logLevel - 1).run()
-
-                // Update the low and high quantities using the combat simulation result
-                updateLowAndHighQuantities(stack2.initialQuantity, result)
-            }
+        if (stack1 === stack2) {
+            println("Different creature stacks must be used")
+            return
         }
 
-        log(logLevel, "Value simulation of ${stack1.quantity} ${stack1.creature.name} versus ${stack2.creature.name} executed in $duration msec: result is ${highQuantity}")
+        while (true) {
+            // Check if the simulation is over
+            if (isOver()) break;
+
+            // Run the next combat simulation
+            combat++
+            stack1.resetQuantity()
+            stack2.defineInitialQuantity(computeQuantity())
+            val result = CombatSimulation(stack1, stack2, logLevel - 1).run()
+
+            // Update the low and high quantities using the combat simulation result
+            updateLowAndHighQuantities(stack2.initialQuantity, result)
+        }
+
+        log(logLevel, "Value simulation of ${stack1.quantity} ${stack1.creature.name} versus ${stack2.creature.name}: result is ${highQuantity}")
     }
 
     /**

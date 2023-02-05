@@ -17,27 +17,25 @@ class CombatSimulation(val stack1: CreatureStack, val stack2: CreatureStack, val
      * Return true if the first stack wins, false otherwise.
      */
     fun run(): Boolean {
-        val duration = measureTimeMillis {
-            if (stack1 === stack2) {
-                println("Different creature stacks must be used")
-                return true
-            }
+        if (stack1 === stack2) {
+            println("Different creature stacks must be used")
+            return true
+        }
 
-            while (true) {
-                round++
+        while (true) {
+            round++
 
-                if (isOver()) break;
-                stack1.attack(stack2, round, logLevel - 1)
+            if (isOver()) break;
+            stack1.attack(stack2, round, logLevel - 1)
 
-                if (isOver()) break;
-                stack2.attack(stack1, round, logLevel - 1)
-            }
+            if (isOver()) break;
+            stack2.attack(stack1, round, logLevel - 1)
         }
 
         val winner: CreatureStack = if (stack1.isAlive()) stack1 else stack2
 
         val message = "Combat simulation of ${stack1.initialQuantity} ${stack1.creature.name} versus ${stack2.initialQuantity} ${stack2.creature.name}" +
-                " executed in $duration msec: winner is ${winner.creature.name} (${winner.quantity} left with ${winner.creature.currentHealth} health)"
+                ": winner is ${winner.creature.name} (${winner.quantity} left with ${winner.creature.currentHealth} health)"
 
         log(logLevel, message)
 
