@@ -6,11 +6,8 @@ import kotlin.math.max
  * Compute the number of creatures needed to defeat a certain stack of creatures.
  * The amount is computed by dichotomy using combat simulations with a varying amount of creatures
  */
-class ValueSimulation(private val creature1: Creature, initialQuantity1: Int, private val creature2: Creature, private val logLevel: Int = 1) {
-
-    private val stack1 = CreatureStack(creature1, initialQuantity1)
-
-    private val stack2 = CreatureStack(creature2, 0)
+class ValueSimulation(creature1: Creature, initialQuantity1: Int, creature2: Creature, logLevel: Int = 1) :
+    BaseSimulation(CreatureStack(creature1, initialQuantity1), CreatureStack(creature2, 0), logLevel) {
 
     /**
      * The low quantity used by the dichotomy.
@@ -30,33 +27,22 @@ class ValueSimulation(private val creature1: Creature, initialQuantity1: Int, pr
     /**
      * Run the simulation.
      */
-    fun run() {
-        if (creature1 === creature2) {
-            println("Different creature instances must be used")
-            return
-        }
+    override fun runOneStep(): Boolean {
+        // Run the next combat simulation
+        combat++
+        stack1.resetQuantity()
+        stack2.defineInitialQuantity(computeQuantity())
+        val combatSimulation = CombatSimulation(stack1.creature, stack1.initialQuantity, stack2.creature, stack2.initialQuantity, logLevel - 1)
+        combatSimulation.run()
+        val result = combatSimulation.doesStack1Win()
 
-        while (true) {
-            // Check if the simulation is over
-            if (isOver()) break;
+        // Update the low and high quantities using the combat simulation result
+        updateLowAndHighQuantities(stack2.initialQuantity, result)
 
-            // Run the next combat simulation
-            combat++
-            stack1.resetQuantity()
-            stack2.defineInitialQuantity(computeQuantity())
-            val result = CombatSimulation(stack1.creature, stack1.initialQuantity, stack2.creature, stack2.initialQuantity, logLevel - 1).run()
-
-            // Update the low and high quantities using the combat simulation result
-            updateLowAndHighQuantities(stack2.initialQuantity, result)
-        }
-
-        log(logLevel, "Value simulation of ${stack1.quantity} ${stack1.creature.name} versus ${stack2.creature.name}: result is $highQuantity")
+        return false
     }
 
-    /**
-     * Is the simulation over.
-     */
-    private fun isOver(): Boolean {
+    override fun isOver(): Boolean {
         if (lowQuantity != null && highQuantity != null && highQuantity == lowQuantity!! + 1) {
             // This happens when stack 1 is stronger than stack 2
             return true
@@ -68,6 +54,10 @@ class ValueSimulation(private val creature1: Creature, initialQuantity1: Int, pr
         }
 
         return false
+    }
+
+    override fun done() {
+        log(logLevel, "Value simulation of ${stack1.quantity} ${stack1.creature.name} versus ${stack2.creature.name}: result is $highQuantity")
     }
 
     /**
