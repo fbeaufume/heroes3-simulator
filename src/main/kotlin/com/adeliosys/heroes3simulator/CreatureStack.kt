@@ -62,7 +62,7 @@ class CreatureStack(val creature: Creature, var initialQuantity: Int) {
      */
     private fun computeDamage(other: Creature): Int {
         // Use the average creature damage instead of a random damage, to get a deterministic result
-        val baseDamage = (creature.maxDamage + creature.minDamage) * 0.5 * quantity;
+        val baseDamage = (creature.maxDamage + creature.minDamage) * 0.5 * quantity
 
         // Compute the attack and defense bonuses
         val attackDifference = creature.attack - other.defense

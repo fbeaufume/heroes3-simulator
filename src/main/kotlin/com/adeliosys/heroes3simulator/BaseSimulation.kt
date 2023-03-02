@@ -5,7 +5,7 @@ abstract class BaseSimulation(val stack1: CreatureStack, val stack2: CreatureSta
     /**
      * The current simulation step.
      */
-    protected var step = 0;
+    protected var step = 0
 
     /**
      * Run all steps of the simulation.
@@ -22,11 +22,11 @@ abstract class BaseSimulation(val stack1: CreatureStack, val stack2: CreatureSta
         }
 
         while (true) {
-            if (isOver()) break;
+            if (isOver()) break
 
             step++
 
-            if (runOneStep()) break;
+            if (runOneStep()) break
         }
 
         done()

@@ -17,7 +17,7 @@ class ValueSimulation(creature1: Creature, initialQuantity1: Int, creature2: Cre
     /**
      * The high quantity used by the dichotomy.
      */
-    private var highQuantity: Int? = null;
+    private var highQuantity: Int? = null
 
     /**
      * The current combat number.

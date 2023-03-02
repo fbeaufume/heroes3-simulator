@@ -18,10 +18,10 @@ class CombatSimulation(creature1: Creature, initialQuantity1: Int, creature2: Cr
     override fun runOneStep(): Boolean {
         stack1.attack(stack2, step, logLevel - 1)
 
-        if (isOver()) return true;
+        if (isOver()) return true
         stack2.attack(stack1, step, logLevel - 1)
 
-        return false;
+        return false
     }
 
     override fun isOver() = !stack1.isAlive() || !stack2.isAlive()
