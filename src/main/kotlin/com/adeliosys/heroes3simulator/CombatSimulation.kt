@@ -5,11 +5,16 @@ package com.adeliosys.heroes3simulator
  */
 class CombatSimulation(creature1: Creature, initialQuantity1: Int, creature2: Creature, initialQuantity2: Int, logLevel: Int = 1) : BaseSimulation(logLevel) {
 
-    private val stack1: CreatureStack = CreatureStack(creature1, initialQuantity1)
+    private val stack1: CreatureStack
 
-    private val stack2: CreatureStack = CreatureStack(creature2, initialQuantity2)
+    private val stack2: CreatureStack
 
     init {
+        // Sort the stacks by decreasing creature speed
+        val stacks = listOf(CreatureStack(creature1, initialQuantity1), CreatureStack(creature2, initialQuantity2)).sortedBy { it.creature.speed }
+        stack1 = stacks[1]
+        stack2 = stacks[0]
+
         checkCreatureStacks(stack1, stack2)
     }
 
