@@ -6,8 +6,15 @@ import kotlin.math.max
  * Compute the number of creatures needed to defeat a certain stack of creatures.
  * The amount is computed by dichotomy using combat simulations with a varying amount of creatures
  */
-class ValueSimulation(creature1: Creature, initialQuantity1: Int, creature2: Creature, logLevel: Int = 1) :
-    BaseSimulation(CreatureStack(creature1, initialQuantity1), CreatureStack(creature2, 0), logLevel) {
+class ValueSimulation(creature1: Creature, initialQuantity1: Int, creature2: Creature, logLevel: Int = 1) : BaseSimulation(logLevel) {
+
+    private val stack1: CreatureStack = CreatureStack(creature1, initialQuantity1)
+
+    private val stack2: CreatureStack = CreatureStack(creature2, 0)
+
+    init {
+        checkCreatureStacks(stack1, stack2)
+    }
 
     /**
      * The low quantity used by the dichotomy.

@@ -1,6 +1,6 @@
 package com.adeliosys.heroes3simulator
 
-abstract class BaseSimulation(val stack1: CreatureStack, val stack2: CreatureStack, val logLevel: Int = 1) {
+abstract class BaseSimulation(val logLevel: Int = 1) {
 
     /**
      * The current simulation step.
@@ -8,19 +8,22 @@ abstract class BaseSimulation(val stack1: CreatureStack, val stack2: CreatureSta
     protected var step = 0
 
     /**
-     * Run all steps of the simulation.
+     * Make sure that the creature stacks are different.
      */
-    fun run() {
+    fun checkCreatureStacks(stack1: CreatureStack, stack2: CreatureStack) {
         if (stack1 === stack2) {
-            log(1, "Different creature stack instances must be used")
-            return
+            throw Exception("Different creature stack instances must be used")
         }
 
         if (stack1.creature === stack2.creature) {
-            log(1, "Different creature instances must be used")
-            return
+            throw Exception("Different creature instances must be used")
         }
+    }
 
+    /**
+     * Run all steps of the simulation.
+     */
+    fun run() {
         while (true) {
             if (isOver()) break
 

@@ -3,8 +3,15 @@ package com.adeliosys.heroes3simulator
 /**
  * Simulate a combat between two stacks of creatures.
  */
-class CombatSimulation(creature1: Creature, initialQuantity1: Int, creature2: Creature, initialQuantity2: Int, logLevel: Int = 1) :
-    BaseSimulation(CreatureStack(creature1, initialQuantity1), CreatureStack(creature2, initialQuantity2), logLevel) {
+class CombatSimulation(creature1: Creature, initialQuantity1: Int, creature2: Creature, initialQuantity2: Int, logLevel: Int = 1) : BaseSimulation(logLevel) {
+
+    private val stack1: CreatureStack = CreatureStack(creature1, initialQuantity1)
+
+    private val stack2: CreatureStack = CreatureStack(creature2, initialQuantity2)
+
+    init {
+        checkCreatureStacks(stack1, stack2)
+    }
 
     /**
      * The combat winner stack.
