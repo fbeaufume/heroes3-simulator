@@ -31,9 +31,6 @@ class ValueSimulation(creature1: Creature, initialQuantity1: Int, creature2: Cre
      */
     private var combat = 0
 
-    /**
-     * Run the simulation.
-     */
     override fun runOneStep(): Boolean {
         // Run the next combat simulation
         combat++

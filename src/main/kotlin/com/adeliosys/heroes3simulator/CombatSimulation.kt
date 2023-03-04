@@ -23,10 +23,6 @@ class CombatSimulation(creature1: Creature, initialQuantity1: Int, creature2: Cr
      */
     private var winner: CreatureStack = stack1
 
-    /**
-     * Run the simulation.
-     * Return true if the first stack wins, false otherwise.
-     */
     override fun runOneStep(): Boolean {
         stack1.attack(stack2, step, logLevel - 1)
 
