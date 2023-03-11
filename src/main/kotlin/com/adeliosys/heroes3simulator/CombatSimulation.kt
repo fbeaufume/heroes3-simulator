@@ -27,6 +27,8 @@ class CombatSimulation(creature1: Creature, initialQuantity1: Int, creature2: Cr
         stack1 = stacks[1]
         stack2 = stacks[0]
 
+        checkQuantity(stack1)
+        checkQuantity(stack2)
         checkCreatureStacks(stack1, stack2)
 
         distance = BATTLEFIELD_WIDTH - stack1.creature.size - stack2.creature.size

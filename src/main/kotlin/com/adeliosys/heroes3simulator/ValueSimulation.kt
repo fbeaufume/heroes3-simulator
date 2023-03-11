@@ -13,6 +13,7 @@ class ValueSimulation(creature1: Creature, initialQuantity1: Int, creature2: Cre
     private val stack2: CreatureStack = CreatureStack(creature2, 0)
 
     init {
+        checkQuantity(stack1)
         checkCreatureStacks(stack1, stack2)
     }
 

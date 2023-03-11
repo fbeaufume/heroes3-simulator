@@ -8,6 +8,15 @@ abstract class BaseSimulation(val logLevel: Int = 1) {
     protected var step = 0
 
     /**
+     * Make sure that the quantity is strictly positive.
+     */
+    fun checkQuantity(stack: CreatureStack) {
+        if (stack.quantity <= 0) {
+            throw Exception("Quantity must be strictly positive")
+        }
+    }
+
+    /**
      * Make sure that the creature stacks are different.
      */
     fun checkCreatureStacks(stack1: CreatureStack, stack2: CreatureStack) {
