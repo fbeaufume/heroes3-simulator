@@ -5,8 +5,20 @@ package com.adeliosys.heroes3simulator
  */
 class CombatSimulation(creature1: Creature, initialQuantity1: Int, creature2: Creature, initialQuantity2: Int, logLevel: Int = 1) : BaseSimulation(logLevel) {
 
+    /**
+     * This distance is the number of hexes between the creature stacks.
+     * Zero means that they can use melee attacks.
+     */
+    private var distance = 0
+
+    /**
+     * The fastest of the two creature stacks.
+     */
     private val stack1: CreatureStack
 
+    /**
+     * The slowest of the two creature stacks.
+     */
     private val stack2: CreatureStack
 
     init {
@@ -16,6 +28,8 @@ class CombatSimulation(creature1: Creature, initialQuantity1: Int, creature2: Cr
         stack2 = stacks[0]
 
         checkCreatureStacks(stack1, stack2)
+
+        distance = BATTLEFIELD_WIDTH - stack1.creature.size - stack2.creature.size
     }
 
     /**
@@ -24,10 +38,18 @@ class CombatSimulation(creature1: Creature, initialQuantity1: Int, creature2: Cr
     private var winner: CreatureStack = stack1
 
     override fun runOneStep(): Boolean {
-        stack1.attack(stack2, step, logLevel - 1)
+        // When both stacks cannot shoot, do not make them move but make them at melee range
+        // This is needed to be sure that the fastest creature strikes first, thanks to proper usage of the Wait command
+        if (distance > 0 && !stack1.creature.canShoot() && !stack2.creature.canShoot()) {
+            distance = 0
+            log(logLevel - 1, "Creature stacks are now at melee range")
+        }
+
+        distance = stack1.attack(stack2, distance, step, logLevel - 1)
 
         if (isOver()) return true
-        stack2.attack(stack1, step, logLevel - 1)
+
+        distance = stack2.attack(stack1, distance, step, logLevel - 1)
 
         return false
     }

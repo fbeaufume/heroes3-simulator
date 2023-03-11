@@ -3,12 +3,17 @@ package com.adeliosys.heroes3simulator
 enum class Ability {
 
     /**
+     * Attack twice.
+     */
+    DOUBLE_ATTACK,
+
+    /**
      * Prevent enemy retaliation.
      */
     NO_ENEMY_RETALIATION,
 
     /**
-     * Attack twice.
+     * No melee penalty for a ranged creature.
      */
-    DOUBLE_ATTACK
+    NO_MELEE_PENALTY
 }

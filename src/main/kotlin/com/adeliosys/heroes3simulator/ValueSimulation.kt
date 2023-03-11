@@ -34,7 +34,7 @@ class ValueSimulation(creature1: Creature, initialQuantity1: Int, creature2: Cre
     override fun runOneStep(): Boolean {
         // Run the next combat simulation
         combat++
-        stack1.resetQuantity()
+        stack1.reset()
         stack2.defineInitialQuantity(computeQuantity())
         val combatSimulation = CombatSimulation(stack1.creature, stack1.initialQuantity, stack2.creature, stack2.initialQuantity, logLevel - 1)
         combatSimulation.run()
