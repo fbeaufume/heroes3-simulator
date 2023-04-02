@@ -15,5 +15,10 @@ enum class Ability {
     /**
      * No melee penalty for a ranged creature.
      */
-    NO_MELEE_PENALTY
+    NO_MELEE_PENALTY,
+
+    /**
+     * No distance penalty for a ranged creature.
+     */
+    NO_DISTANCE_PENALTY
 }

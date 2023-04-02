@@ -93,7 +93,7 @@ class CreatureStack(val creature: Creature, var initialQuantity: Int) {
         val defenseBonus = if (attackDifference < 0) min(-attackDifference, 28) * 0.025 else 0.0
 
         // Compute the range penalty, i.e. half damage when target is too far
-        val rangePenalty = if (distance >= RANGED_PENALTY_DISTANCE) 0.5 else 1.0
+        val rangePenalty = if (distance >= RANGED_PENALTY_DISTANCE && !creature.hasAbility(Ability.NO_DISTANCE_PENALTY)) 0.5 else 1.0
 
         // Compute the melee penalty, i.e. half damage when a shooter attacks a melee target
         val meleePenalty = if (distance <= 0 && creature.ranged && !creature.hasAbility(Ability.NO_MELEE_PENALTY)) 0.5 else 1.0
