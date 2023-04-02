@@ -45,33 +45,47 @@ open class Creature(
 
 // See https://heroes.thelazy.net/index.php/List_of_creatures for creature stats
 
-class Peasant() : Creature("Peasant", 1, 1, 1, 1, 1, 3, 1, false, 0)
+// Level 1 creatures
 
-class SkeletonWarrior() : Creature("Skeleton Warrior", 6, 6, 1, 3, 6, 5, 1, false, 0)
+class Peasant : Creature("Peasant", 1, 1, 1, 1, 1, 3, 1, false, 0)
 
-class Halberdier() : Creature("Halberdier", 6, 5, 2, 3, 10, 5, 1, false, 0)
+class SkeletonWarrior : Creature("Skeleton Warrior", 6, 6, 1, 3, 6, 5, 1, false, 0)
 
-class Marksman() : Creature("Marksman", 6, 3, 2, 3, 10, 6, 1, true, 24, Ability.DOUBLE_ATTACK)
+class Halberdier : Creature("Halberdier", 6, 5, 2, 3, 10, 5, 1, false, 0)
 
-class LizardWarrior() : Creature("Lizard Warrior", 6, 8, 2, 5, 15, 5, 1, true, 24)
+// Level 2 creatures
 
-class BattleDwarf() : Creature("Battle Dwarf", 7, 7, 2, 4, 20, 5, 1, false, 0)
+class Marksman : Creature("Marksman", 6, 3, 2, 3, 10, 6, 1, true, 24, Ability.DOUBLE_ATTACK)
 
-class SilverPegasus() : Creature("Silver Pegasus", 9, 10, 5, 9, 30, 12, 2, false, 0)
+class LizardWarrior : Creature("Lizard Warrior", 6, 8, 2, 5, 15, 5, 1, true, 24)
 
-class Crusader() : Creature("Crusader", 12, 12, 7, 10, 35, 6, 1, false, 0, Ability.DOUBLE_ATTACK)
+class BattleDwarf : Creature("Battle Dwarf", 7, 7, 2, 4, 20, 5, 1, false, 0)
 
-class ArchMage() : Creature("Arch Mage", 12, 9, 7, 9, 30, 7, 1, true, 24, Ability.NO_MELEE_PENALTY)
+// Level 4 creatures
 
-class Zealot() : Creature("Zealot", 12, 10, 10, 12, 30, 7, 1, true, 24, Ability.NO_MELEE_PENALTY)
+class SilverPegasus : Creature("Silver Pegasus", 9, 10, 5, 9, 30, 12, 2, false, 0)
 
-class MinotaurKing() : Creature("Minotaur King", 15, 15, 12, 20, 50, 8, 1, false, 0)
+class Crusader : Creature("Crusader", 12, 12, 7, 10, 35, 6, 1, false, 0, Ability.DOUBLE_ATTACK)
 
-class DendroidSoldier() : Creature("Dendroid Soldier", 9, 12, 10, 14, 65, 4, 1, false, 0)
+class ArchMage : Creature("Arch Mage", 12, 9, 7, 9, 30, 7, 1, true, 24, Ability.NO_MELEE_PENALTY)
 
-class NagaQueen() : Creature("Naga Queen", 16, 13, 30, 30, 110, 7, 2, false, 0, Ability.NO_ENEMY_RETALIATION)
+class Sharpshooter : Creature("Sharpshooter", 12, 10, 8, 10, 15, 9, 1, true, 32, Ability.NO_DISTANCE_PENALTY)
 
-class ArchDevil() : Creature("Arch Devil", 26, 28, 30, 40, 200, 17, 1, false, 0, Ability.NO_ENEMY_RETALIATION)
+// Level 5 creatures
+
+class Zealot : Creature("Zealot", 12, 10, 10, 12, 30, 7, 1, true, 24, Ability.NO_MELEE_PENALTY)
+
+class MinotaurKing : Creature("Minotaur King", 15, 15, 12, 20, 50, 8, 1, false, 0)
+
+class DendroidSoldier : Creature("Dendroid Soldier", 9, 12, 10, 14, 65, 4, 1, false, 0)
+
+// Level 6 creatures
+
+class NagaQueen : Creature("Naga Queen", 16, 13, 30, 30, 110, 7, 2, false, 0, Ability.NO_ENEMY_RETALIATION)
+
+// Level 7 creatures
+
+class ArchDevil : Creature("Arch Devil", 26, 28, 30, 40, 200, 17, 1, false, 0, Ability.NO_ENEMY_RETALIATION)
 
 class Archangel() : Creature("Anchangel", 30, 30, 50, 50, 250, 18, 2, false, 0)
 
