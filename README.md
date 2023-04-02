@@ -18,9 +18,11 @@ The PV for several stack sizes of a selection of creatures is:
 |-------------------|----------|-----------|------------|
 | Skeleton Warriors | 6        |           |            |
 | Halberdier        | 9        | 69        | 668        |
+| Marksman          | 28       | 289       | 2912       |
 | Battle Dwarf      | 13       |           |            |
 | Silver Pegasus    | 29       |           |            |
 | Crusader          | 44       | 354       | 3427       |
+| Sharpshooter      | 80       | 800       | 7979       |
 | Minotaur King     | 66       |           |            |
 | Naga Queen        | 184      | 1443      | 13899      |
 | Arch Devil        | 441      |           |            |
@@ -45,4 +47,8 @@ This means that it takes 44 crusaders to defeat 10 naga queens.
 - This simulator only supports one stack of creatures versus one stack of creatures
 - Creature can be melee or ranged (and ammunition are supported)
 - No heroes and no magic
-- Only some creature abilities are supported: double attack, no enemy retaliation, no melee penalty
+- Only some creature abilities are supported:
+  - Double attack (e.g. crusaders)
+  - No enemy retaliation (e.g. naga queens)
+  - No melee penalty (e.g. zealots)
+  - No distance penalty (e.g. sharpshooters)
