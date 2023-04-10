@@ -85,6 +85,10 @@ class NagaQueen : Creature("Naga Queen", 16, 13, 30, 30, 110, 7, 2, false, 0, Ab
 
 // Level 7 creatures
 
+class Behemot : Creature("Behemot", 17, 17, 30, 50, 160, 6, 2, false, 0, Ability.REDUCE_DEFENSE_40)
+
+class AncientBehemot : Creature("Ancient Behemot", 19, 19, 30, 50, 300, 9, 2, false, 0, Ability.REDUCE_DEFENSE_80)
+
 class ArchDevil : Creature("Arch Devil", 26, 28, 30, 40, 200, 17, 1, false, 0, Ability.NO_ENEMY_RETALIATION)
 
 class Archangel() : Creature("Anchangel", 30, 30, 50, 50, 250, 18, 2, false, 0)

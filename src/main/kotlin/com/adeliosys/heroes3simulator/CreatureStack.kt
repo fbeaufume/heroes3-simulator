@@ -34,7 +34,7 @@ class CreatureStack(val creature: Creature, var initialQuantity: Int) {
         // Move if needed
         var distance = distance
         if (!creature.canShoot() && distance > 0) {
-            distance = max (0, distance - creature.speed)
+            distance = max(0, distance - creature.speed)
 
             log(logLevel, "Round $round: $quantity ${creature.name} advance, distance is now $distance")
 
@@ -87,10 +87,17 @@ class CreatureStack(val creature: Creature, var initialQuantity: Int) {
         // Use the average creature damage instead of a random damage, to get a deterministic result
         val baseDamage = (creature.maxDamage + creature.minDamage) * 0.5 * quantity
 
+        // Compute the effective defense, i.e. use the defense reduction ability
+        val effectiveDefense = other.defense * when {
+            creature.hasAbility(Ability.REDUCE_DEFENSE_40) -> 0.6
+            creature.hasAbility(Ability.REDUCE_DEFENSE_80) -> 0.2
+            else -> 1.0
+        }
+
         // Compute the attack and defense bonuses
-        val attackDifference = creature.attack - other.defense
-        val attackBonus = if (attackDifference > 0) min(attackDifference, 60) * 0.05 else 0.0
-        val defenseBonus = if (attackDifference < 0) min(-attackDifference, 28) * 0.025 else 0.0
+        val attackDifference = creature.attack - effectiveDefense
+        val attackBonus = if (attackDifference > 0) min(attackDifference, 60.0) * 0.05 else 0.0
+        val defenseBonus = if (attackDifference < 0) min(-attackDifference, 28.0) * 0.025 else 0.0
 
         // Compute the range penalty, i.e. half damage when target is too far
         val rangePenalty = if (distance >= RANGED_PENALTY_DISTANCE && !creature.hasAbility(Ability.NO_DISTANCE_PENALTY)) 0.5 else 1.0

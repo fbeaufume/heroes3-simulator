@@ -20,5 +20,15 @@ enum class Ability {
     /**
      * No distance penalty for a ranged creature.
      */
-    NO_DISTANCE_PENALTY
+    NO_DISTANCE_PENALTY,
+
+    /**
+     * Reduce the enemy defense by 40%
+     */
+    REDUCE_DEFENSE_40,
+
+    /**
+     * Reduce the enemy defense by 90%
+     */
+    REDUCE_DEFENSE_80,
 }
