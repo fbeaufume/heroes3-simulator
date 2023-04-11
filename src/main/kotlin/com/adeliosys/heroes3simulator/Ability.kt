@@ -31,4 +31,14 @@ enum class Ability {
      * Reduce the enemy defense by 90%
      */
     REDUCE_DEFENSE_80,
+
+    /**
+     * Reduce the enemy attack by 30%
+     */
+    REDUCE_ATTACK_30,
+
+    /**
+     * Reduce the enemy attack by 60%
+     */
+    REDUCE_ATTACK_60,
 }

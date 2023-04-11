@@ -81,6 +81,12 @@ class DendroidSoldier : Creature("Dendroid Soldier", 9, 12, 10, 14, 65, 4, 1, fa
 
 // Level 6 creatures
 
+class Manticore() : Creature("Manticore", 15, 13, 14, 20, 80, 7, 2, false, 0)
+
+class Nix : Creature("Nix", 13, 16, 18, 22, 80, 6, 1, false, 0, Ability.REDUCE_ATTACK_30)
+
+class NixWarrior : Creature("Nix Warrior", 14, 17, 18, 22, 90, 7, 1, false, 0, Ability.REDUCE_ATTACK_60)
+
 class NagaQueen : Creature("Naga Queen", 16, 13, 30, 30, 110, 7, 2, false, 0, Ability.NO_ENEMY_RETALIATION)
 
 // Level 7 creatures

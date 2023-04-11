@@ -41,8 +41,11 @@ We can generalize by computing the combat value in any creature besides peasants
 | Naga Queen      | 10       | Crusader         | 44  |
 | Behemot         | 10       | Dendroid Soldier | 43  |
 | Ancient Behemot | 10       | Dendroid Soldier | 65  |
-| Behemot         | 10       | Archangel        |     |
-| Ancient Behemot | 10       | Archangel        |     |
+| Behemot         | 10       | Archangel        | 6   |
+| Ancient Behemot | 10       | Archangel        | 11  |
+| Archangel       | 10       | Manticore        | 56  |
+| Archangel       | 10       | Nix Warrior      | 34  |
+| Archangel       | 10       | Naga Queen       | 29  |
 | Azure Dragon    | 10       | Archangel        | 51  |
 | Azure Dragon    | 20       | Archangel        | 102 |
 
@@ -59,3 +62,4 @@ This means that it takes 44 crusaders to defeat 10 naga queens.
   - No melee penalty (e.g. zealots)
   - No distance penalty (e.g. sharpshooters)
   - Defense reduction (e.g. behemots)
+  - Attack reduction (e.g. nix warriors)

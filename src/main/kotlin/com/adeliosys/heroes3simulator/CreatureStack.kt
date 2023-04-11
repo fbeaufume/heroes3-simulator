@@ -87,6 +87,13 @@ class CreatureStack(val creature: Creature, var initialQuantity: Int) {
         // Use the average creature damage instead of a random damage, to get a deterministic result
         val baseDamage = (creature.maxDamage + creature.minDamage) * 0.5 * quantity
 
+        // Compute the effective attack, i.e. use the attack reduction ability
+        val effectiveAttack = creature.attack * when {
+            other.hasAbility(Ability.REDUCE_ATTACK_30) -> 0.7
+            other.hasAbility(Ability.REDUCE_ATTACK_60) -> 0.4
+            else -> 1.0
+        }
+
         // Compute the effective defense, i.e. use the defense reduction ability
         val effectiveDefense = other.defense * when {
             creature.hasAbility(Ability.REDUCE_DEFENSE_40) -> 0.6
@@ -95,7 +102,7 @@ class CreatureStack(val creature: Creature, var initialQuantity: Int) {
         }
 
         // Compute the attack and defense bonuses
-        val attackDifference = creature.attack - effectiveDefense
+        val attackDifference = effectiveAttack - effectiveDefense
         val attackBonus = if (attackDifference > 0) min(attackDifference, 60.0) * 0.05 else 0.0
         val defenseBonus = if (attackDifference < 0) min(-attackDifference, 28.0) * 0.025 else 0.0
 
