@@ -39,7 +39,7 @@ class ValueSimulation(creature1: Creature, initialQuantity1: Int, creature2: Cre
         stack2.defineInitialQuantity(computeQuantity())
         val combatSimulation = CombatSimulation(stack1.creature, stack1.initialQuantity, stack2.creature, stack2.initialQuantity, logLevel - 1)
         combatSimulation.run()
-        val result = combatSimulation.doesStack1Win()
+        val result = combatSimulation.didLeftStackWin()
 
         // Update the low and high quantities using the combat simulation result
         updateLowAndHighQuantities(stack2.initialQuantity, result)

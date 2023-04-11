@@ -12,6 +12,11 @@ class CombatSimulation(creature1: Creature, initialQuantity1: Int, creature2: Cr
     private var distance = 0
 
     /**
+     * The creature on the left side of the fight.
+     */
+    private val leftCreature = creature1
+
+    /**
      * The fastest of the two creature stacks.
      */
     private val stack1: CreatureStack
@@ -68,7 +73,7 @@ class CombatSimulation(creature1: Creature, initialQuantity1: Int, creature2: Cr
     }
 
     /**
-     * Return true if stack 1 won the combat.
+     * Return true if the left stack won the combat.
      */
-    fun doesStack1Win(): Boolean = winner === stack1
+    fun didLeftStackWin(): Boolean = winner.creature === leftCreature
 }
