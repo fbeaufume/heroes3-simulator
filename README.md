@@ -22,6 +22,8 @@ The PV for several stack sizes of a selection of creatures is:
 | Battle Dwarf      | 13       | 106       | 1038       |
 | Silver Pegasus    | 29       | 225       | 2184       |
 | Crusader          | 44       | 354       | 3427       |
+| Vampire           | 37       | 289       | 2827       |
+| Vampire Lord      | 56       | 401       | 3833       |
 | Sharpshooter      | 80       | 800       | 7979       |
 | Minotaur King     | 66       | 542       | 5336       |
 | Naga Queen        | 184      | 1443      | 13899      |
@@ -61,5 +63,6 @@ This means that it takes 44 crusaders to defeat 10 naga queens.
   - No enemy retaliation (e.g. naga queens)
   - No melee penalty (e.g. zealots)
   - No distance penalty (e.g. sharpshooters)
+  - Drain life (e.g. vampire lords)
   - Defense reduction (e.g. behemots)
   - Attack reduction (e.g. nix warriors)
