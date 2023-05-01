@@ -33,6 +33,7 @@ open class Creature(
      */
     fun canShoot(): Boolean = ranged && currentAmmunition > 0
 
+    // TODO FBE call this only if actually shooting
     fun consumeAmmunition() {
         currentAmmunition--
     }
@@ -66,6 +67,10 @@ class BattleDwarf : Creature("Battle Dwarf", 7, 7, 2, 4, 20, 5, 1, false, 0)
 class SilverPegasus : Creature("Silver Pegasus", 9, 10, 5, 9, 30, 12, 2, false, 0)
 
 class Crusader : Creature("Crusader", 12, 12, 7, 10, 35, 6, 1, false, 0, Ability.DOUBLE_ATTACK)
+
+class Vampire: Creature("Vampire", 10, 9, 5, 8, 30, 6, 1, false, 0, Ability.NO_ENEMY_RETALIATION)
+
+class VampireLord: Creature("Vampire Lord", 10, 10, 5, 8, 40, 9, 1, false, 0, Ability.NO_ENEMY_RETALIATION, Ability.LIFE_DRAIN)
 
 class ArchMage : Creature("Arch Mage", 12, 9, 7, 9, 30, 7, 1, true, 24, Ability.NO_MELEE_PENALTY)
 

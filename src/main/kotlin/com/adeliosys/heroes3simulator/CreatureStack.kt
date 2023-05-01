@@ -45,31 +45,33 @@ class CreatureStack(val creature: Creature, var initialQuantity: Int) {
         }
 
         // This creature stack attacks the other one
-        var quantityBeforeAttack = other.quantity
+        var attackerQuantityBeforeAttack = quantity
+        var defenderQuantityBeforeAttack = other.quantity
         var damage = computeDamage(other.creature, distance)
-        other.applyDamage(damage)
+        other.applyDamage(damage, this)
         creature.consumeAmmunition()
 
-        log(logLevel, "Round $round: $quantity ${creature.name} attack $quantityBeforeAttack ${other.creature.name} for $damage damage: ${other.quantity} left (${other.creature.currentHealth} health)")
+        log(logLevel, "Round $round: $attackerQuantityBeforeAttack ${creature.name} attack $defenderQuantityBeforeAttack ${other.creature.name} for $damage damage: ${other.quantity} left (${other.creature.currentHealth} health)")
 
         // The other one retaliates, if possible
         if (other.isAlive() && !creature.hasAbility(Ability.NO_ENEMY_RETALIATION) && distance <= 0) {
-            quantityBeforeAttack = quantity
+            attackerQuantityBeforeAttack = other.quantity
+            defenderQuantityBeforeAttack = quantity
             damage = other.computeDamage(this.creature, distance)
-            applyDamage(damage)
+            applyDamage(damage, other)
 
-            log(logLevel, "Round $round: ${other.quantity} ${other.creature.name} retaliate $quantityBeforeAttack ${creature.name} for $damage damage: $quantity left (${creature.currentHealth} health)")
+            log(logLevel, "Round $round: $attackerQuantityBeforeAttack ${other.creature.name} retaliate $defenderQuantityBeforeAttack ${creature.name} for $damage damage: $quantity left (${creature.currentHealth} health)")
         }
 
         // Second attack, if possible
         if (isAlive() && other.isAlive() && creature.hasAbility(Ability.DOUBLE_ATTACK)) {
-            quantityBeforeAttack = other.quantity
+            attackerQuantityBeforeAttack = quantity
+            defenderQuantityBeforeAttack = other.quantity
             damage = computeDamage(other.creature, distance)
-            other.applyDamage(damage)
-
+            other.applyDamage(damage, this)
             creature.consumeAmmunition()
 
-            log(logLevel, "Round $round: $quantity ${creature.name} attack $quantityBeforeAttack ${other.creature.name} for $damage damage: ${other.quantity} left (${other.creature.currentHealth} health)")
+            log(logLevel, "Round $round: $attackerQuantityBeforeAttack ${creature.name} attack $defenderQuantityBeforeAttack ${other.creature.name} for $damage damage: ${other.quantity} left (${other.creature.currentHealth} health)")
         }
 
         return distance
@@ -120,7 +122,7 @@ class CreatureStack(val creature: Creature, var initialQuantity: Int) {
     /**
      * Apply some damage to this creature stack.
      */
-    private fun applyDamage(damage: Int) {
+    private fun applyDamage(damage: Int, attacker: CreatureStack) {
         // A stack health is the total health of all creatures of the stack
         val previousStackHealth = creature.initialHealth * (quantity - 1) + creature.currentHealth
         val newStackHealth = previousStackHealth - damage
@@ -135,5 +137,31 @@ class CreatureStack(val creature: Creature, var initialQuantity: Int) {
             quantity = newStackHealth / creature.initialHealth + 1
             creature.currentHealth = newStackHealth % creature.initialHealth
         }
+
+        // Apply life drain if needed
+        if (attacker.creature.hasAbility(Ability.LIFE_DRAIN)) {
+            // In multi stack fights, we should probably cap the drained amount by the actual health of the attacked stack
+            attacker.addHealth(damage)
+        }
+    }
+
+    /**
+     * Add some health to the creature stack (for example as a consequence of the drain life ability),
+     * possibly adding more creatures to the stack (up to the initial quantity).
+     */
+    private fun addHealth(healthAmount: Int) {
+//        println("Before drain life of $healthAmount: quantity=$quantity, currentHealth=${creature.currentHealth}")
+
+        val newHealthTotal = (quantity - 1) * creature.initialHealth + creature.currentHealth + healthAmount
+
+        if (newHealthTotal / creature.initialHealth >= initialQuantity) {
+            quantity = initialQuantity
+            creature.currentHealth = creature.initialHealth
+        } else {
+            quantity = newHealthTotal / creature.initialHealth + 1
+            creature.currentHealth = newHealthTotal % creature.initialHealth
+        }
+
+//        println("After drain life of $healthAmount: quantity=$quantity, currentHealth=${creature.currentHealth}")
     }
 }

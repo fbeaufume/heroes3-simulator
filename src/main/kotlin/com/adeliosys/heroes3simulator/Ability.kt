@@ -23,6 +23,12 @@ enum class Ability {
     NO_DISTANCE_PENALTY,
 
     /**
+     * Drain life when attacking.
+     * TODO FBE this must no work on undead, elementals and golems
+     */
+    LIFE_DRAIN,
+
+    /**
      * Reduce the enemy defense by 40%
      */
     REDUCE_DEFENSE_40,
