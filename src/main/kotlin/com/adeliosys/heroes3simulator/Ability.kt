@@ -24,7 +24,7 @@ enum class Ability {
 
     /**
      * Drain life when attacking.
-     * TODO FBE this must no work on undead, elementals and golems
+     * TODO FBE this must not work on undead, elementals and golems
      */
     LIFE_DRAIN,
 
@@ -47,4 +47,9 @@ enum class Ability {
      * Reduce the enemy attack by 60%
      */
     REDUCE_ATTACK_60,
+
+    /**
+     * An undead creature.
+     */
+    UNDEAD,
 }
