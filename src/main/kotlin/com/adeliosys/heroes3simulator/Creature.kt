@@ -42,6 +42,11 @@ open class Creature(
      * Return true if this creature has a given ability.
      */
     fun hasAbility(ability: Ability): Boolean = abilities.contains(ability)
+
+    /**
+     * Return true if the creature is immune to drain life.
+     */
+    fun isImmuneToDrainLife(): Boolean = hasAbility(Ability.UNDEAD) || hasAbility(Ability.NON_LIVING)
 }
 
 // See https://heroes.thelazy.net/index.php/List_of_creatures for creature stats

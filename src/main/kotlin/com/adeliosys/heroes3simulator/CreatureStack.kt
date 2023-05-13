@@ -139,7 +139,7 @@ class CreatureStack(val creature: Creature, var initialQuantity: Int) {
         }
 
         // Apply life drain if needed
-        if (attacker.creature.hasAbility(Ability.LIFE_DRAIN)) {
+        if (attacker.creature.hasAbility(Ability.LIFE_DRAIN) && !this.creature.isImmuneToDrainLife()) {
             // In multi stack fights, we should probably cap the drained amount by the actual health of the attacked stack
             attacker.addHealth(damage)
         }

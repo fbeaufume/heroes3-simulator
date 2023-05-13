@@ -4,8 +4,8 @@ fun main(args: Array<String>) {
 //    ValueSimulation(Crusader(), 1, Peasant()).run()
 //    ValueSimulation(Crusader(), 10, Peasant()).run()
 //    ValueSimulation(Crusader(), 100, Peasant()).run()
-    ValueSimulation(Crusader(), 100, Vampire()).run()
-    ValueSimulation(Crusader(), 100, VampireLord()).run()
+//    ValueSimulation(Crusader(), 100, Vampire()).run()
+//    ValueSimulation(Crusader(), 100, VampireLord()).run()
 //    ValueSimulation(Archangel(), 1, Peasant()).run()
 //    ValueSimulation(MinotaurKing(), 10, BattleDwarf()).run()
 //    ValueSimulation(NagaQueen(), 10, Crusader()).run()
@@ -18,9 +18,12 @@ fun main(args: Array<String>) {
 //    ValueSimulation(AzureDragon(), 20, Archangel()).run()
 //    ValueSimulation(AzureDragon(), 1, AncientBehemot()).run()
 
-    ValueSimulation(Vampire(), 1, Peasant()).run()
-    ValueSimulation(Vampire(), 10, Peasant()).run()
-    ValueSimulation(Vampire(), 100, Peasant()).run()
+//    ValueSimulation(Vampire(), 1, Peasant()).run()
+//    ValueSimulation(Vampire(), 10, Peasant()).run()
+//    ValueSimulation(Vampire(), 100, Peasant()).run()
+
+    CombatSimulation(VampireLord(), 10, Halberdier(), 50, 2).run()
+    CombatSimulation(VampireLord(), 10, SkeletonWarrior(), 50, 2).run()
 
 //    CombatSimulation(MinotaurKing(), 10, BattleDwarf(), 51).run()
 //    CombatSimulation(MinotaurKing(), 10, BattleDwarf(), 52).run()
