@@ -104,6 +104,11 @@ class Sharpshooter : Creature(
 
 // Level 5 creatures
 
+class GoldGolem : Creature(
+    "Gold Golem", 11, 12, 8, 10, 50, 5, 1, false, 0,
+    Ability.NON_LIVING
+)
+
 class Zealot : Creature(
     "Zealot", 12, 10, 10, 12, 30, 7, 1, true, 24,
     Ability.NO_MELEE_PENALTY
@@ -114,6 +119,11 @@ class MinotaurKing : Creature("Minotaur King", 15, 15, 12, 20, 50, 8, 1, false, 
 class DendroidSoldier : Creature("Dendroid Soldier", 9, 12, 10, 14, 65, 4, 1, false, 0)
 
 // Level 6 creatures
+
+class DiamondGolem : Creature(
+    "Diamond Golem", 13, 12, 10, 14, 60, 5, 1, false, 0,
+    Ability.NON_LIVING
+)
 
 class Manticore() : Creature("Manticore", 15, 13, 14, 20, 80, 7, 2, false, 0)
 
