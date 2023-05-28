@@ -46,7 +46,7 @@ open class Creature(
     /**
      * Return true if the creature is immune to drain life.
      */
-    fun isImmuneToDrainLife(): Boolean = hasAbility(Ability.UNDEAD) || hasAbility(Ability.NON_LIVING)
+    fun isImmuneToDrainLife(): Boolean = hasAbility(Ability.UNDEAD) || hasAbility(Ability.ELEMENTAL) || hasAbility(Ability.NON_LIVING)
 }
 
 // See https://heroes.thelazy.net/index.php/List_of_creatures for creature stats

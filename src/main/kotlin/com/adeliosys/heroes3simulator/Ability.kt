@@ -53,6 +53,11 @@ enum class Ability {
     UNDEAD,
 
     /**
+     * An elemental creature.
+     */
+    ELEMENTAL,
+
+    /**
      * A non-living creature.
      */
     NON_LIVING,
