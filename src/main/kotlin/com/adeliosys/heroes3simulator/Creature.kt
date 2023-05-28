@@ -77,6 +77,16 @@ class BattleDwarf : Creature("Battle Dwarf", 7, 7, 2, 4, 20, 5, 1, false, 0)
 
 class SilverPegasus : Creature("Silver Pegasus", 9, 10, 5, 9, 30, 12, 2, false, 0)
 
+class FireElemental : Creature(
+    "Fire Elemental", 10, 8, 4, 6, 35, 6, 1, false, 0,
+    Ability.ELEMENTAL
+)
+
+class EnergyElemental : Creature(
+    "Energy Elemental", 12, 8, 4, 6, 35, 8, 1, false, 0,
+    Ability.ELEMENTAL
+)
+
 class Crusader : Creature(
     "Crusader", 12, 12, 7, 10, 35, 6, 1, false, 0,
     Ability.DOUBLE_ATTACK
