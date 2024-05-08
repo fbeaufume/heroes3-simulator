@@ -49,7 +49,7 @@ class CreatureStack(val creature: Creature, var initialQuantity: Int) {
         var defenderQuantityBeforeAttack = other.quantity
         var damage = computeDamage(other.creature, distance)
         other.applyDamage(damage, this)
-        creature.consumeAmmunition()
+        creature.consumeAmmunition(distance)
 
         log(logLevel, "Round $round: $attackerQuantityBeforeAttack ${creature.name} attack $defenderQuantityBeforeAttack ${other.creature.name} for $damage damage: ${other.quantity} left (${other.creature.currentHealth} health)")
 
@@ -69,7 +69,7 @@ class CreatureStack(val creature: Creature, var initialQuantity: Int) {
             defenderQuantityBeforeAttack = other.quantity
             damage = computeDamage(other.creature, distance)
             other.applyDamage(damage, this)
-            creature.consumeAmmunition()
+            creature.consumeAmmunition(distance)
 
             log(logLevel, "Round $round: $attackerQuantityBeforeAttack ${creature.name} attack $defenderQuantityBeforeAttack ${other.creature.name} for $damage damage: ${other.quantity} left (${other.creature.currentHealth} health)")
         }
@@ -112,7 +112,7 @@ class CreatureStack(val creature: Creature, var initialQuantity: Int) {
         val rangePenalty = if (distance >= RANGED_PENALTY_DISTANCE && !creature.hasAbility(Ability.NO_DISTANCE_PENALTY)) 0.5 else 1.0
 
         // Compute the melee penalty, i.e. half damage when a shooter attacks a melee target
-        val meleePenalty = if (distance <= 0 && creature.ranged && !creature.hasAbility(Ability.NO_MELEE_PENALTY)) 0.5 else 1.0
+        val meleePenalty = if (distance <= 0 && creature.initialAmmunition > 0 && !creature.hasAbility(Ability.NO_MELEE_PENALTY)) 0.5 else 1.0
 
         val result = baseDamage * (1.0 + attackBonus) * (1.0 - defenseBonus) * rangePenalty * meleePenalty
 
